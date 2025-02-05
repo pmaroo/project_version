@@ -8,18 +8,16 @@ module.exports = async (phase, { defultConfig }) => {
   // phase : 설정이 세팅되는 환경 (개발환경,배포환경 나눌 수 있음)
   // 해당 phase 와 PHASE_DEVELOPMENT_SERVER는 터미널에서 확인 가능
   // phase-development-server
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    // 개발환경
-    const nextConfig = {};
-
-    return nextConfig;
-  }
+  // 개발환경
 
   const API_KEY = "a9d36e8de716b2445367dc38aba22d5a";
 
+  //   개발,배포 환경 두군데 다 적용시킬 공간
   const nextConfig = {
-    // 배포환경
     reactStrictMode: true, // React.strictMode와 동일
+    // 2번씩 렌더링 되는 현상 발견
+    // 의도적으로 2번씩 렌더링
+    // 부작용 탐지로 인한 두번의 렌더링, 배포에서는 정상적으로 한번씩 렌더링
     swcMinify: true, // Terser와 비슷한 역할 : 필요없는 공백이나 주석을 삭제하여 용량 줄이고 스크립트를 해석할 수 없도록 암호화(Minification)
     // Minification : 스크립트 파일과 웹 페이지에 대한 코드를 최소화, 웹 로딩 시간 줄이고 속도와 접근성을 향상시키면서 UX를 향상
     // swcMinify : https://swc.rs/docs/configuration/minification#jscminifycompress
@@ -30,7 +28,9 @@ module.exports = async (phase, { defultConfig }) => {
     compress: true, // 서버 압축
     // next.js는 gzip을 사용하는데 커스텀 서버를 통해 압축이 이미 구성된 경우 false로 사용하지 않을 수 있음
     // 서버 압축이 구성되지 않은 경우 사용할 것을 권장
+  };
 
+  nextConfig.redirects = {
     // Redirect기능
     async redirects() {
       return [
@@ -47,7 +47,9 @@ module.exports = async (phase, { defultConfig }) => {
         },
       ];
     },
+  };
 
+  nextConfig.rewrites = {
     // Rewrites
     // 요청경로를 다른 목적지 경로로 매핑할 수 있게 해줌
     // URL 프록시처럼 동작 => proxy(대리) => 직접적인 연결을 대신 수행하는 역할
@@ -61,6 +63,12 @@ module.exports = async (phase, { defultConfig }) => {
       ];
     },
   };
+
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    // 개발환경
+  } else {
+    // 배포환경
+  }
 
   return nextConfig;
 };
