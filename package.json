@@ -1,0 +1,22 @@
+{
+ 
+  "name": "version",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "pmaroo",
+  "license": "ISC",
+  "description": "",
+
+  "dependencies": {
+    "next": "15.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
