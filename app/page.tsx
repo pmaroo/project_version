@@ -1,10 +1,11 @@
+import { Button } from "@*/components/ui/button";
+
 export default function Page() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      {/* <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
-        Click Me
-      </Button> */}
-      <h3 className="text-[30px] text-[#fff]">ddd</h3>
+    <div className="flex justify-center items-center">
+      <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
+        Click Me33
+      </Button>
     </div>
   );
 }

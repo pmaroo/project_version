@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 const AboutClient = dynamic(() => import("./clientPage"), {
   ssr: true, // 서버 사이드 렌더링을 하지 않도록 설정
   //   서버사이드 렌더링을 false로 지정하면 에러가 뜸 해결법 못찾음
-  suspense: true, // React Suspense 활성화
 });
 
 export default function Page() {
