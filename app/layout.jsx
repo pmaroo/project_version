@@ -5,6 +5,9 @@
 
 // next.js 13 이후로는 pages 폴더의 형태를 권장하지 않음
 // 그대신 app 라우팅은 폴더 형식으로 제공됨
+
+import "./styles/global.css";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">

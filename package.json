@@ -1,9 +1,7 @@
 {
- 
   "name": "version",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,10 +11,13 @@
   "author": "pmaroo",
   "license": "ISC",
   "description": "",
-
   "dependencies": {
+    "@tailwindcss/postcss": "4.0.3",
     "next": "15.1.6",
+    "postcss": "8.5.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "shadcn": "2.3.0",
+    "tailwindcss": "4.0.3"
   }
 }

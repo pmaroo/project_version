@@ -1,5 +1,12 @@
 export default function Page() {
-  return <h1>메인</h1>;
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      {/* <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
+        Click Me
+      </Button> */}
+      <h3 className="text-[30px] text-[#fff]">ddd</h3>
+    </div>
+  );
 }
 // 주의점
 // app은 서버에서 렌더링 되는 서버 컴포넌트이기 때문에

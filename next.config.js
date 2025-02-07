@@ -21,9 +21,9 @@ module.exports = async (phase, { defultConfig }) => {
     swcMinify: true, // Terser와 비슷한 역할 : 필요없는 공백이나 주석을 삭제하여 용량 줄이고 스크립트를 해석할 수 없도록 암호화(Minification)
     // Minification : 스크립트 파일과 웹 페이지에 대한 코드를 최소화, 웹 로딩 시간 줄이고 속도와 접근성을 향상시키면서 UX를 향상
     // swcMinify : https://swc.rs/docs/configuration/minification#jscminifycompress
-    assetPrefix: "cdn주소", // 정적 자산을 커스텀 CDN, 특정경로에서 불러올때 사용하는 설정
-    // 정적파일 (이미지,CSS,JS)은 기본적으로 /public 폴더나 빌드된 경로에서 제공되지만 특정 경로나 CDN을 사용해야할 때 assetPrefix를 설정하면 다른 경로에서 불러올 수 있음
-    basePath: "/docs", // 애플리케이션에 대한 경로 접두사
+    // assetPrefix: "cdn주소", // 정적 자산을 커스텀 CDN, 특정경로에서 불러올때 사용하는 설정
+    // // 정적파일 (이미지,CSS,JS)은 기본적으로 /public 폴더나 빌드된 경로에서 제공되지만 특정 경로나 CDN을 사용해야할 때 assetPrefix를 설정하면 다른 경로에서 불러올 수 있음
+    // basePath: "/docs", // 애플리케이션에 대한 경로 접두사
     // a tag에 /myapp으로 가도록 설정했다면 => /docs/myapp으로 이동
     compress: true, // 서버 압축
     // next.js는 gzip을 사용하는데 커스텀 서버를 통해 압축이 이미 구성된 경우 false로 사용하지 않을 수 있음
