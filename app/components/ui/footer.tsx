@@ -1,17 +1,12 @@
 import { Button } from "@*/components/ui/button";
-import SEO from "./seo";
 
-export default function Page() {
+export default function Footer() {
   return (
-    <>
-      <SEO title="메인" />
-
-      <div className="flex justify-center items-center">
-        <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
-          Click Me33
-        </Button>
-      </div>
-    </>
+    <div className="flex justify-center items-center">
+      <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
+        Footer
+      </Button>
+    </div>
   );
 }
 // 주의점

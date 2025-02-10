@@ -5,6 +5,7 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 // 더 많은 next.config.js 기능 https://nextjs-ko.org/docs/app/api-reference/next-config-js
 module.exports = async (phase, { defultConfig }) => {
+  
   // phase : 설정이 세팅되는 환경 (개발환경,배포환경 나눌 수 있음)
   // 해당 phase 와 PHASE_DEVELOPMENT_SERVER는 터미널에서 확인 가능
   // phase-development-server

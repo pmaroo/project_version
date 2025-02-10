@@ -7,14 +7,30 @@
 // 그대신 app 라우팅은 폴더 형식으로 제공됨
 
 import "@/styles/global.css";
+import Header from "./components/ui/header";
+import Footer from "./components/ui/footer";
+// next/navigation 공부
+// notFound 강제 404 띄워버리는 함수
+// next/navigation 클라이언트 컴포넌트에서만 가능
+import { notFound } from "next/navigation";
 
-export default function RootLayout({ children }) {
+// 404일때 헤더푸터 안보이도록 레이아웃 나누기
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ko">
       <body>
-        <nav>공통 네비게이션</nav>
+        <header>
+          <Header />
+        </header>
         <section>{children}</section>
-        <footer>공통 푸터</footer>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );

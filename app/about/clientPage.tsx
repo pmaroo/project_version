@@ -1,13 +1,18 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useContext, useState } from "react";
+import { Theme } from "../components/ui/theme";
+import SEO from "@app/seo";
 
 export default function ClientPage({ user }) {
   const [stat, setStat] = useState(user);
 
+  const ThemeContext = useContext(Theme);
+
   return (
     <Suspense fallback={<p>로딩중</p>}>
-      <h1>{stat.name}</h1>
+      <SEO />
+      <h1 className={`text-[${ThemeContext.basic}]`}>{stat.name}</h1>
     </Suspense>
   );
 }

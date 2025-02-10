@@ -10,7 +10,7 @@ const AboutClient = dynamic(() => import("./clientPage"), {
 
 export default function Page() {
   const user = {
-    name: "이름",
+    name: "이름33",
   };
 
   return <AboutClient user={user} />;
