@@ -1,21 +1,8 @@
 "use client";
 
 import { Button } from "@*/components/ui/button";
-import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
-  const pathname = usePathname();
-  const [isNotFoundPage, setIsNotFoundPage] = useState<Boolean>(false);
-
-  console.log(isNotFoundPage);
-  console.log(pathname);
-  useEffect(() => {
-    setIsNotFoundPage(pathname === "/404" ? true : false);
-  }, []);
-
-  if (isNotFoundPage) return null;
-
   return (
     <div className="flex justify-center items-center">
       <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
