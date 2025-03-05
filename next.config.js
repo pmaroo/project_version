@@ -5,7 +5,6 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 // 더 많은 next.config.js 기능 https://nextjs-ko.org/docs/app/api-reference/next-config-js
 module.exports = async (phase, { defultConfig }) => {
-  
   // phase : 설정이 세팅되는 환경 (개발환경,배포환경 나눌 수 있음)
   // 해당 phase 와 PHASE_DEVELOPMENT_SERVER는 터미널에서 확인 가능
   // phase-development-server
@@ -15,6 +14,8 @@ module.exports = async (phase, { defultConfig }) => {
 
   //   개발,배포 환경 두군데 다 적용시킬 공간
   const nextConfig = {
+    transpilePackages: ["three"], // 트랜스파일
+    // 번들 사이즈 줄이기 위해 three.js 포함 (용량 큰 라이브러리)
     reactStrictMode: true, // React.strictMode와 동일
     // 2번씩 렌더링 되는 현상 발견
     // 의도적으로 2번씩 렌더링

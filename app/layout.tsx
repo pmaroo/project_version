@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 };
 
 // 404일때 헤더푸터 안보이도록 레이아웃 나누기
-
 export default function RootLayout({
   children,
 }: {

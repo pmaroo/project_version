@@ -1,6 +1,8 @@
 import { Button } from "@*/components/ui/button";
 import { GetStaticProps } from "@node_modules/next";
 import { notFound } from "@node_modules/next/navigation";
+import MainThree from "./components/ui/three.js/main";
+import Main2 from "./components/ui/three.js/main2";
 // import { useRouter } from "@node_modules/next/router";
 
 // posts는 빌드시점에 getStaticProps()에 의해 채워짐
@@ -27,9 +29,8 @@ export default async function Page({ posts }) {
   return (
     <>
       <div className="flex justify-center items-center">
-        <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
-          Click Me33
-        </Button>
+        <Main2 />
+        <MainThree />
       </div>
     </>
   );
