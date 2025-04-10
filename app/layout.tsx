@@ -4,6 +4,8 @@
 import "@/styles/global.css";
 import Header from "./components/ui/header";
 import Footer from "./components/ui/footer";
+import Leins from "./lib/lenis";
+
 // next/navigation 공부
 // notFound 강제 404 띄워버리는 함수
 // next/navigation 클라이언트 컴포넌트에서만 가능
@@ -16,6 +18,17 @@ export const metadata: Metadata = {
 };
 
 // 404일때 헤더푸터 안보이도록 레이아웃 나누기
+// RootLayout
+// Next.js 13의 App Router 구조에서 핵심적인 역할을 하는 컴포넌트
+// 전체 애플리케이션의 기본 레이아웃을 정의
+// 따라서 useClient에서 사용 불가능
+
+/* <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/MotionPathPlugin.min.js"></script> */
+// <script src="../assets/js/lib/swiper.min.js"></script>
+
 export default function RootLayout({
   children,
 }: {
@@ -27,10 +40,12 @@ export default function RootLayout({
         <header>
           <Header />
         </header>
-        <section>{children}</section>
+        <section className="bg-black">{children}</section>
         <footer>
           <Footer />
         </footer>
+
+        <Leins />
       </body>
     </html>
   );

@@ -1,14 +1,110 @@
 "use client";
 
-import { Button } from "@*/components/ui/button";
+import * as Icon from "@deemlol/next-icons";
+import { useCallback, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import debounce from "lodash/debounce";
 
 export default function Header() {
+  const [isMenu, setIsMenu] = useState<Boolean>(false);
+  const [isScroll, setIsScroll] = useState<Boolean>(true);
+
+  const menuFlag = useCallback(() => {
+    setIsMenu(!isMenu);
+  }, [isMenu]);
+
+  useEffect(() => {
+    const scrollEvent = () => {
+      if (window.scrollY === 0) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", scrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-center items-center">
-      <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
-        Header
-      </Button>
-    </div>
+    <>
+      <motion.div
+        animate={{
+          transform: isScroll ? `translateY(0px)` : `translateY(-60px)`,
+        }}
+        transition={{ duration: isScroll ? 0.3 : 0.3, ease: "easeOut" }}
+        style={{
+          position: `fixed`,
+          top: `0`,
+          left: `0`,
+          width: `100%`,
+        }}
+      >
+        <header
+          className="
+          flex
+          flex-row
+          items-center
+          w-full
+          justify-between
+          h-[60px]
+          bg-black
+          px-[20px]
+          z-[100]
+        "
+        >
+          <p className="text-white ">로고</p>
+          <nav className="flex flex-row w-auto ">
+            <ul className="flex flex-row ">
+              <li
+                className="
+                text-white
+                text-[13px]
+                cursor-pointer
+              "
+              >
+                <a>로그인</a>
+              </li>
+
+              <li
+                className="
+                text-[#bbb]
+                text-[13px]
+                mx-[10px]
+              "
+              >
+                <p>|</p>
+              </li>
+              <li
+                className="
+                text-white
+                text-[13px]
+                cursor-pointer
+              "
+              >
+                <a>회원가입</a>
+              </li>
+            </ul>
+            <p
+              className="
+              ml-[10px]
+              cursor-pointer
+            "
+              onClick={menuFlag}
+            >
+              {isMenu ? (
+                <Icon.X size={18} color="#ffffff" />
+              ) : (
+                <Icon.AlignJustify size={18} color="#ffffff" />
+              )}
+            </p>
+          </nav>
+        </header>
+      </motion.div>
+    </>
   );
 }
 // 주의점

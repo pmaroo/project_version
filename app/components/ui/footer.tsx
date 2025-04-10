@@ -2,8 +2,8 @@ import { Button } from "@*/components/ui/button";
 
 export default function Footer() {
   return (
-    <div className="flex justify-center items-center">
-      <Button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
+    <div className="flex items-center justify-center">
+      <Button className="p-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
         Footer
       </Button>
     </div>
