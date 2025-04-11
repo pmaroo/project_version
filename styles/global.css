@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .bg-header {
-    background-image: url("https://www.29sfilm.com/img/full_menu.png");
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -65,23 +59,12 @@
   }
 }
 
-.box {
-  background-color: #0ae448 !important;
-  position: relative;
-  border-radius: 5px;
-}
-.box:before {
-  padding-top: 100%;
-  content: "";
-  display: block;
-}
-
 @layer base {
   * {
-    @apply border-border;
+    /* @apply border-border; */
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
   }
 }

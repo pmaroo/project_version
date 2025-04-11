@@ -2,6 +2,8 @@
 // 그대신 app 라우팅은 폴더 형식으로 제공됨
 
 import "@/styles/global.css";
+import "@/styles/embla/base.css";
+import "@/styles/embla/embla.css";
 import Header from "./components/ui/header";
 import Footer from "./components/ui/footer";
 import Leins from "./lib/lenis";
@@ -22,12 +24,6 @@ export const metadata: Metadata = {
 // Next.js 13의 App Router 구조에서 핵심적인 역할을 하는 컴포넌트
 // 전체 애플리케이션의 기본 레이아웃을 정의
 // 따라서 useClient에서 사용 불가능
-
-/* <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/MotionPathPlugin.min.js"></script> */
-// <script src="../assets/js/lib/swiper.min.js"></script>
 
 export default function RootLayout({
   children,
