@@ -41,9 +41,7 @@ export default function RootLayout({
           <Header />
         </header>
         <section className="bg-black">{children}</section>
-        <footer>
-          <Footer />
-        </footer>
+        <footer>{/* <Footer /> */}</footer>
 
         <Leins />
       </body>

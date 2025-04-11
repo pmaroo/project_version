@@ -1,6 +1,7 @@
-import { Button } from "@*/components/ui/button";
+import { Button } from "@app/components/ui/shadcn/button";
 import { GetStaticProps } from "@node_modules/next";
 import { notFound } from "@node_modules/next/navigation";
+import IndexClient from "./clientPage";
 // import { useRouter } from "@node_modules/next/router";
 
 // posts는 빌드시점에 getStaticProps()에 의해 채워짐
@@ -26,21 +27,7 @@ export default async function Page({ posts }) {
 
   return (
     <>
-      <article className="flex items-center justify-center h-screen">
-        <ul className="flex flex-row items-center justify-center w-full">
-          <li className="mr-[30px]">
-            <p className="text-white text-[100px]">
-              선물의 <span className="font-[900]">가치</span>
-            </p>
-          </li>
-          <li className="ml-[30px]">
-            <p className="text-white text-[100px]">
-              깊카와 <span className="font-[900]">같이</span>
-            </p>
-          </li>
-        </ul>
-      </article>
-      <article className="w-full h-screen"></article>
+      <IndexClient />
     </>
   );
 }

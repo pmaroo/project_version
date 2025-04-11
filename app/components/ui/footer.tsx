@@ -1,4 +1,4 @@
-import { Button } from "@*/components/ui/button";
+import { Button } from "@app/components/ui/shadcn/button";
 
 export default function Footer() {
   return (
