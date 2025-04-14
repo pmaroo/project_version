@@ -8,6 +8,7 @@ export default function IndexClient() {
   gsap.registerPlugin(useGSAP, ScrollTrigger, Flip);
 
   const container = useRef<HTMLUListElement | null>(null);
+  const twoContainer = useRef<HTMLUListElement | null>(null);
 
   useGSAP(
     () => {
@@ -106,82 +107,445 @@ export default function IndexClient() {
         ease: "power2.out",
         stagger: 0.1,
       });
-
-      gsap.to(".element", {
-        scrollTrigger: {
-          trigger: ".element",
-          start: "top center",
-          end: "bottom center",
-          scrub: 0.5,
-          onEnter: () => {
-            // 요소가 중앙에 도달했을 때 실행되는 애니메이션
-            gsap.from(".element li", {
-              y: 100,
-              opacity: 0,
-              duration: 1,
-              stagger: 0.2,
-              ease: "power2.out",
-            });
-          },
-        },
-      });
     },
-    { scope: container }
+    { scope: container },
   );
 
+  useGSAP(
+    () => {
+      const sets = gsap.utils.toArray<HTMLUListElement>(".text-set");
+
+      let currentIndex = -1;
+
+      sets.forEach((el, index) => {
+        const title = el.querySelector(".title");
+        const title2 = el.querySelector(".title2");
+        const box = el.querySelector(".box");
+
+        // 초기 상태 세팅
+        gsap.set(title, { x: 75 });
+        gsap.set(title2, { x: -75 });
+        gsap.set(box, { opacity: 0 });
+
+        // 텍스트 애니메이션 트리거
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+          onEnter: () => {
+            if (currentIndex !== index) {
+              gsap.to(".stickyBox", {
+                y: -300 * index,
+                duration: 0.8,
+                ease: "power2.out",
+              });
+              currentIndex = index;
+            }
+
+            gsap.to(title, { x: 0, duration: 0.8 });
+            gsap.to(title2, { x: 0, duration: 0.8 });
+            gsap.to(box, { opacity: 1, duration: 0.8 });
+          },
+          onLeaveBack: () => {
+            gsap.to(title, { x: 75, duration: 0.8 });
+            gsap.to(title2, { x: -75, duration: 0.8 });
+            gsap.to(box, { opacity: 0, duration: 0.8 });
+
+            // 위로 돌아갈 때 stickyBox도 자연스럽게 복귀
+            if (currentIndex !== index - 1) {
+              gsap.to(".stickyBox", {
+                y: -500 * (index - 1),
+                duration: 0.8,
+                ease: "power2.out",
+              });
+              currentIndex = index - 1;
+            }
+          },
+        });
+      });
+    },
+    { scope: twoContainer },
+  );
+
+  const SLIDES = Array.from(Array(5).keys());
+  const emblaRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
       <article
-        className="flex items-start justify-start h-[4000px]"
+        className="
+          flex
+          items-start
+          justify-start
+          h-[4000px]
+        "
         ref={container}
       >
-        <ul className="sticky top-0 left-0 flex flex-row items-center justify-center w-full h-screen">
-          <li className="mr-[30px] translate-x-[130px] title">
-            <p className="text-white text-[100px]">
-              선물의 <span className="font-[900]">가치</span>
+        <ul
+          className="
+            flex
+            flex-row
+            items-center
+            justify-center
+            w-full
+            sticky
+            top-0
+            left-0
+            h-screen
+          "
+        >
+          <li
+            className="
+              mr-[30px]
+              translate-x-[130px]
+              title
+            "
+          >
+            <p
+              className="
+                text-white
+                text-[100px]
+              "
+            >
+              선물의{" "}
+              <span
+                className="
+                  font-[900]
+                "
+              >
+                가치
+              </span>
             </p>
           </li>
-          <li className="w-[240px] h-[400px] relative card-container">
-            <div className="absolute inset-auto bg-red-400 opacity-0 card card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-orange-500 opacity-0 card card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-blue-700 opacity-0 card card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
-            <div className="absolute inset-auto bg-white opacity-0 card2 translate-y-[200px] size-full"></div>
+          <li
+            className="
+              w-[240px]
+              h-[400px]
+              relative
+              card-container
+            "
+          >
+            <div
+              className="
+                absolute
+                inset-auto
+                bg-red-400
+                opacity-0
+                card
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                absolute
+                inset-auto
+                bg-orange-500
+                opacity-0
+                card
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                absolute
+                inset-auto
+                bg-blue-700
+                opacity-0
+                card
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
+            <div
+              className="
+                bg-white
+                absolute
+                inset-auto
+                opacity-0
+                card2
+                translate-y-[200px]
+                size-full
+              "
+            ></div>
           </li>
-          <li className="ml-[30px] translate-x-[-130px] title2">
-            <p className="text-white text-[100px]">
-              깊카와 <span className="font-[900]">같이</span>
+          <li
+            className="
+              ml-[30px]
+              translate-x-[-130px]
+              title2
+            "
+          >
+            <p
+              className="
+                text-white
+                text-[100px]
+              "
+            >
+              깊카와{" "}
+              <span
+                className="
+                  font-[900]
+                "
+              >
+                같이
+              </span>
             </p>
           </li>
         </ul>
       </article>
-      <article className="flex flex-col items-center justify-center w-full py-[400px] ">
-        <ul className=" flex flex-row items-center justify-center w-full element py-[100px]">
-          <li className="text-white text-[100px] font-[900]">GIFT CARD</li>
-          <li className="mx-[50px] ">
-            <div className="size-[100px] bg-white rotate-[20deg]"></div>
-          </li>
-          <li className="text-white text-[100px] font-[900]">깊카</li>
-        </ul>
-        <ul className="flex flex-row items-center justify-center w-full my-[200px] element">
-          <li className="text-white text-[100px] font-[900]">GIFT CARD</li>
-          <li className="mx-[50px] ">
-            <div className="size-[100px] bg-white rotate-[20deg]"></div>
-          </li>
-          <li className="text-white text-[100px] font-[900]">깊카</li>
-        </ul>
-        <ul className="flex flex-row items-center justify-center w-full element">
-          <li className="text-white text-[100px] font-[900]">GIFT CARD</li>
-          <li className="mx-[50px] ">
-            <div className="size-[100px] bg-white rotate-[20deg]"></div>
-          </li>
-          <li className="text-white text-[100px] font-[900]">깊카</li>
-        </ul>
+      <article
+        ref={twoContainer}
+        className="
+          flex
+          flex-col
+          items-center
+          justify-start
+          w-full
+          h-[3000px]
+          pb-[400px]
+        "
+      >
+        <div
+          className="
+            sticky
+            top-[0]
+            left-[0]
+            pt-[400px]
+            stickyBox
+          "
+        >
+          <ul
+            className="
+              flex
+              flex-row
+              items-center
+              justify-center
+              w-full
+              py-[100px]
+              text-set
+            "
+          >
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title
+              "
+            >
+              GIFT CARD
+            </li>
+            <li
+              className="
+                mx-[50px]
+                box
+              "
+            >
+              <div
+                className="
+                  bg-white
+                  size-[100px]
+                  rotate-[20deg]
+                "
+              ></div>
+            </li>
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title2
+              "
+            >
+              깊카
+            </li>
+          </ul>
+          <ul
+            className="
+              flex
+              flex-row
+              items-center
+              justify-center
+              w-full
+              py-[100px]
+              text-set
+            "
+          >
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title
+              "
+            >
+              GIFT CARD
+            </li>
+            <li
+              className="
+                mx-[50px]
+                box
+              "
+            >
+              <div
+                className="
+                  bg-white
+                  size-[100px]
+                  rotate-[20deg]
+                "
+              ></div>
+            </li>
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title2
+              "
+            >
+              깊카
+            </li>
+          </ul>
+
+          <ul
+            className="
+              flex
+              flex-row
+              items-center
+              justify-center
+              w-full
+              py-[100px]
+              text-set
+            "
+          >
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title
+              "
+            >
+              GIFT CARD
+            </li>
+            <li
+              className="
+                mx-[50px]
+                box
+              "
+            >
+              <div
+                className="
+                  bg-white
+                  size-[100px]
+                  rotate-[20deg]
+                "
+              ></div>
+            </li>
+            <li
+              className="
+                text-white
+                text-[100px]
+                font-[900]
+                title2
+              "
+            >
+              깊카
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article>
+        <div ref={emblaRef}>
+          <div>
+            {SLIDES.map((index) => {
+              return (
+                <div
+                  className="
+                border
+                border-white
+              "
+                  key={index}
+                >
+                  {index + 1}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </article>
     </>
   );
